@@ -1,0 +1,37 @@
+plugins {
+    id 'java'
+    id 'info.solidsoft.pitest' version '1.5.1'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+ext.junitJupiterVersion  = '5.5.2'
+ext.junitPlatformVersion = '1.5.2'
+
+dependencies {
+    testCompile("org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}")
+    testRuntime("org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}")
+    testRuntime("org.junit.platform:junit-platform-launcher:${junitPlatformVersion}")
+    pitest 'org.pitest:pitest-junit5-plugin:0.12'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+apply(plugin: "info.solidsoft.pitest")
+
+pitest {
+    targetClasses = ["calculator.*"]
+    testPlugin = "junit5"
+    pitestVersion = '1.5.1' //not needed when a default PIT version should be used
+    threads = 4
+    outputFormats = ['XML', 'HTML']
+    timestampedReports = true
+}
+

@@ -12,6 +12,23 @@ but they can also be executed in shell with the following command:
 $ gradle test
 ```
 
+### Running the program
+
+Build JAR file with the program using the following command:
+
+```bash
+$ gradle jar
+```
+
+This will compile entire application and set `Cli` as the main class.
+The JAR file will be on `./build/libs/calculator-1.0-SNAPSHOT.jar` path.
+
+To run the calculator with the input file simply execute:
+
+```bash
+$ java -jar ./build/libs/calculator-1.0-SNAPSHOT.jar <PATH TO INPUT FILE>
+```
+
 ### Solution
 
 I created an interface `Operation` which has a public method called

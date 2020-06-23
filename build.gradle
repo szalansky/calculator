@@ -35,3 +35,8 @@ pitest {
     timestampedReports = true
 }
 
+jar {
+    manifest {
+        attributes 'Main-Class': 'calculator.Cli'
+    }
+}

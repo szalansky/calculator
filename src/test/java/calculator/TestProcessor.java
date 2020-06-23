@@ -24,6 +24,17 @@ public class TestProcessor {
     }
 
     @Test
+    public void testDescriptionExamples() {
+        processor.addOperation("add 2");
+        processor.addOperation("multiply 3");
+        processor.addOperation("apply 3");
+        Assertions.assertEquals(15, processor.getAcc());
+        processor.addOperation("multiply 9");
+        processor.addOperation("apply 5");
+        Assertions.assertEquals(45, processor.getAcc());
+    }
+
+    @Test
     public void testApplyAfterApply() {
         processor.addOperation("add 10");
         processor.addOperation("apply 10");

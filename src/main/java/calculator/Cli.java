@@ -28,8 +28,12 @@ public class Cli {
         for(String line : operationLines) {
             try {
                 processor.addOperation(line);
+            } catch(NumberFormatException e) {
+                System.err.println("Illegal argument: " + line + ". Should be numeric.");
             } catch(IllegalArgumentException e) {
-                e.printStackTrace();
+                System.err.println("Illegal operation in: " + line);
+            } catch(MalformedOperationException e) {
+                System.err.println("Malformed operation in: " + line + ". Should have format <OP> <NUM>");
             }
         }
         return processor.getAcc();

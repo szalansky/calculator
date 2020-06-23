@@ -1,4 +1,6 @@
 add 2
 multiply 3
 invalid-op 10
+add @
+malformedop
 apply 3

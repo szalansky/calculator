@@ -39,8 +39,28 @@ public class TestProcessor {
         processor.addOperation("multiply 9");
         processor.addOperation("divide 15");
         processor.addOperation("subtract 2");
-        processor.addOperation("invalid-op 40");
         processor.addOperation("apply 3");
         Assertions.assertEquals(1, processor.getAcc());
+    }
+
+    @Test
+    public void testInvalidOp() {
+        Assertions.assertThrows(
+                IllegalArgumentException.class,
+                () -> { processor.addOperation("invalidop 30"); });
+    }
+
+    @Test
+    public void testNonNumericArgument() {
+        Assertions.assertThrows(
+                NumberFormatException.class,
+                () -> { processor.addOperation("add @"); });
+    }
+
+    @Test
+    public void testMalformedOp() {
+        Assertions.assertThrows(
+                MalformedOperationException.class,
+                () -> { processor.addOperation("add"); });
     }
 }
